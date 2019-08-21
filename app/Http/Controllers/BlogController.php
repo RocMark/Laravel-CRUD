@@ -8,12 +8,11 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    public function index(Request $request, $msg = null)
+    public function index(Request $request)
     {
         $data = BlogService::indexBlog([
             'keyword' => $request->keyword,
         ]);
-        $data['msg'] = $msg;
         return view('home', $data);
     }
 
@@ -24,19 +23,25 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        // TODO 接收驗證後的結果  在 Controller 用判斷是否成功
         $postSuccess = BlogService::postBlog([
             'title' => $request->title,
             'userId' => $request->userId,
             'content' => $request->content,
             'tag' => $request->tag,
         ]);
-        // TODO 這裡要接收 Service 回傳的 true、false 判斷 post 成功與否
-        // 成功就導向回去 blog 頁
         if ($postSuccess) {
-            return redirect('/blog','新增文章成功');
+            // 錯誤寫法 redirect 可以按 F12 去查看傳入的參數
+            // return redirect('/blog','新增文章成功');
+            return redirect()
+                ->action('BlogController@index')
+                ->with('message', '新增文章成功')
+                ->with('class', 'alert-success');
         }
-        return redirect('/blog','新增文章失敗');
+        // TODO redirect 也可以測試??? (statusCode)
+        return redirect()
+            ->action('BlogController@index')
+            ->with('message', '新增文章失敗')
+            ->with('class', 'alert-danger');
     }
 
     public function edit($id)

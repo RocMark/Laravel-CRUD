@@ -1,6 +1,7 @@
 @extends('global')
 @section('create')
     <h1>CreatePage</h1>
+    <a class="btn btn-info mb-3" href="{{ route('blog.index')}}">Home</a><br>
     <form method="POST" class="d-inline-block" action="{{ route('blog.store')}}">
         @csrf
         <div class="form-group d-flex flex-column">

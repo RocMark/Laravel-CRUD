@@ -6,7 +6,8 @@
     <a class="btn btn-success mb-3" href="{{ route('blog.create')}}">新增資料</a>
 
     <div class="dropdown mb-2">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
             Tag List
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -16,9 +17,11 @@
         </div>
     </div>
 
-    @if($msg)
-        <div class="alert alert-primary" role="alert">
-            {{ $msg }}
+    @if(session('message'))
+        {{--  根據 message 替換 alert-success 或 alert-danger      --}}
+        {{--  把邏輯搬到 Controller 去處理，Class只需要傳入變數  --}}
+        <div class="alert {{session('class')}}" role="alert">
+            {{ session('message') }}
         </div>
     @endif
 
