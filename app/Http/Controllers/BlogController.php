@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
+    
     public function index(Request $request)
     {
         $data = BlogService::indexBlog([
@@ -15,52 +16,41 @@ class BlogController extends Controller
         ]);
         return view('home', $data);
     }
-
+    
     public function create()
     {
         return view('create');
     }
-
+    
     public function store(Request $request)
     {
         $postSuccess = BlogService::postBlog([
-            'title' => $request->title,
-            'userId' => $request->userId,
-            'content' => $request->content,
-            'tag' => $request->tag,
+            'title' => (int) $request->title, 'userId' => $request->userId, 'content' => $request->content,
+            'tag'   => $request->tag,
         ]);
         if ($postSuccess) {
             // 錯誤寫法 redirect 可以按 F12 去查看傳入的參數
             // return redirect('/blog','新增文章成功');
-            return redirect()
-                ->action('BlogController@index')
-                ->with('message', '新增文章成功')
-                ->with('class', 'alert-success');
+            return redirect()->action('BlogController@index')->with('message', '新增文章成功')->with('class',
+                'alert-success');
         }
-        // TODO redirect 也可以測試??? (statusCode)
-        return redirect()
-            ->action('BlogController@index')
-            ->with('message', '新增文章失敗')
-            ->with('class', 'alert-danger');
+        return redirect()->action('BlogController@index')->with('message', '新增文章失敗')->with('class', 'alert-danger');
     }
-
+    
     public function edit($id)
     {
         $data = BlogRepository::getBlog($id);
         return view('edit', ['blog' => $data]);
     }
-
+    
     public function update(Request $request, $id)
     {
         BlogService::updateBlog([
-            'id'=>$id,
-            'title'=>$request->title,
-            'content'=>$request->content,
-            'tag'=>$request->tag,
+            'id' => $id, 'title' => $request->title, 'content' => $request->content, 'tag' => $request->tag,
         ]);
         return redirect(route('blog.index'));
     }
-
+    
     public function destroy(Request $request, $id)
     {
         BlogRepository::deleteBlog($id);

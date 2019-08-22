@@ -4,6 +4,7 @@
     <h1>HomeBlade</h1>
     <a class="btn btn-info mb-3" href="{{ route('blog.index')}}">Home</a>
     <a class="btn btn-success mb-3" href="{{ route('blog.create')}}">新增資料</a>
+    <a class="btn btn-dark mb-3" href="{{ route('email.send')}}">Email</a>
 
     <div class="dropdown mb-2">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"

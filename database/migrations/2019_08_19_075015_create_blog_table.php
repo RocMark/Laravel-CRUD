@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateBlogTable extends Migration
 {
@@ -27,7 +27,7 @@ class CreateBlogTable extends Migration
             $table->timestamps(); // 包含 created & update
         });
     }
-
+    
     /**
      * Reverse the migrations.
      *
