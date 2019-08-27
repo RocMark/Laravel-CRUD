@@ -12,4 +12,10 @@ class ProductController extends Controller
             'id' => (int) $request->id, 'title' => 'productTitle',
         ];
     }
+
+    public static function test(Request $request)
+    {
+        return view('test');
+        // return view('test', ['blog' => $data]);
+    }
 }

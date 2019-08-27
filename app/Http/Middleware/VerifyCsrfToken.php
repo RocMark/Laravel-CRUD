@@ -12,12 +12,14 @@ class VerifyCsrfToken extends Middleware
      * @var bool
      */
     protected $addHttpCookie = true;
-    
+
     /**
      * The URIs that should be excluded from CSRF verification.
      *
      * @var array
      */
-    protected $except = [//
-    ];
+
+    // TODO: 有哪些 uri 不想要被檢查 token 可以在這裡加入
+    // 別家廠商 協作 可能不會夾帶token 我們就必須開啟這設定
+    protected $except = [];
 }

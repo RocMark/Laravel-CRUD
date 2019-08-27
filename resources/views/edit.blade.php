@@ -19,7 +19,7 @@
                     {{ $blog->content }}
                 </textarea>
             </label>
-            <button class="btn btn-info">送出修改</button>
+            <button class="btn btn-info">逝出修改</button>
         </div>
     </form>
 @endsection
