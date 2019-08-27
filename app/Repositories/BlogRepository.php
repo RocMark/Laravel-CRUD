@@ -11,12 +11,12 @@ class BlogRepository extends Repository
     {
         return Blog::all();
     }
-    
+
     public static function getBlog($id)
     {
         return Blog::where('id', $id)->first();
     }
-    
+
     public static function postBlog($data)
     {
         $blog = new Blog();
@@ -26,20 +26,23 @@ class BlogRepository extends Repository
         $blog->content = $data['content'];
         $blog->save();
     }
-    
+
     public static function searchBlog($data)
     {
         $keyword = $data['keyword'];
         if (isset($keyword)) {
-            $builder = Blog::where('title', 'like', "%{$keyword}%")->orWhere('content', 'like',
-                    "%{$keyword}%")->orderBy('id', 'desc');
+            $builder = Blog::where('title', 'like', "%{$keyword}%")->orWhere(
+                'content',
+                'like',
+                "%{$keyword}%"
+            )->orderBy('id', 'desc');
             $blogs = $builder->paginate(5);
         } else {
             $blogs = Blog::orderBy('id', 'desc')->paginate(5);
         }
         return $blogs;
     }
-    
+
     public static function updateBlog($data)
     {
         $newBlog = Blog::find($data['id']);
@@ -47,15 +50,14 @@ class BlogRepository extends Repository
         $newBlog->tag = $data['tag'];
         $newBlog->content = $data['content'];
         $newBlog->save();
-        
+
         // 取得更新的值，需要重新搜尋
         // $returnNewBlog = Blog::where('id',$data['id'])->get();
         // dd($returnNewBlog); // 回傳 Collection 成功
     }
-    
+
     public static function deleteBlog($id)
     {
         return Blog::destroy($id);
     }
 }
-

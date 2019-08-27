@@ -7,6 +7,7 @@
     <a class="btn btn-dark mb-3" href="{{ route('email.send')}}">Email</a>
     <a class="btn btn-info mb-3" href="{{ route('test.test')}}">Test</a>
 
+    {{-- // todo-fixme dropdown 沒反應 --}}
     <div class="dropdown mb-2">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">

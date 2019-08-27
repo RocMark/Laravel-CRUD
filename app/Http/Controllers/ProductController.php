@@ -6,13 +6,7 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public static function store(Request $request)
-    {
-        return [
-            'id' => (int) $request->id, 'title' => 'productTitle',
-        ];
-    }
-
+    // todo-fix 接到 405 Method Not Allowed
     public static function test(Request $request)
     {
         return view('test');

@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -12,8 +13,13 @@
 */
 //
 
+use Illuminate\Support\Facades\Route;
 
-// todo-note 實際的網址是 api/user  (只做傳送資料請求，不做重新導向)
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-// });
+// api 放只做資料請求，不做 重新導向 & 回傳頁面
+// Route::middleware('auth:api')->post('/blog/', 'BlogController@store')->name('blog.store');
+
+
+Route::post('/blog/', 'BlogController@store')->name('blog.store');
+Route::put('/blog/{id}', 'BlogController@update')->name('blog.update');
+Route::delete('/blog/{id}', 'BlogController@destroy')->name('blog.destroy');
+Route::get('/email', 'WarningController@send')->name('email.send');
