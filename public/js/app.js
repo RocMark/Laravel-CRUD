@@ -1697,8 +1697,6 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -1706,13 +1704,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
+// todo 測試 axios import 有沒問題
+// import axios from 'axios'
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       token: ''
     };
   },
+  methods: {},
   mounted: function mounted() {
     this.token = document.querySelector('meta[name="csrf-token"]').content;
     var currentToken = this.token;
@@ -1729,16 +1729,17 @@ __webpack_require__.r(__webpack_exports__);
         "method": "POST",
         "headers": {
           "X-CSRF-TOKEN": currentToken,
-          "Cookie": "laravel_session=eyJpdiI6IkpMTHY3ZXlLUytKWWpWYklVdzRFNUE9PSIsInZhbHVlIjoiWU90c1wveTRCWll2cGM1NCsrRVVPOW9vMFR6aW5xb0xzdGhVem53TUVNM2cwaVoxakZ6TFNISlRTWHNBVnNMZ0giLCJtYWMiOiJkODE5NGM3OWM0NzIxNjg2MjViNDQ5OThhZTRiMmNiZWQyMDVmZTUwYzQ5ZGVjNzgyNjFmN2YyZGVhZjE5YWU4In0%3D; XSRF-TOKEN=eyJpdiI6IjFqa09OZzBSS2Y5MnJKNDY0N2dXWUE9PSIsInZhbHVlIjoiWGxCR3BoS3FsXC9jNURlNkpDem0xVkZzaXBGcFBqTTUxU01iY0R6ZVZ0MXRFZjU5Z0dEYUk3cVJtSldZU2RIbEUiLCJtYWMiOiIzYzI2NzFiOTFkYzZiNzQ1M2FhNzgzZDUwZTFmYmU2MGJjN2EzZjIxODM2ZmYyNDkxYzllOTNjNzQ2NmQ0OWIwIn0%3D",
           "Content-Type": "application/x-www-form-urlencoded,text/plain",
           "Accept": "*/*",
           "Cache-Control": "no-cache",
-          "Host": "127.0.0.1:8000",
-          "Accept-Encoding": "gzip, deflate",
-          "Content-Length": "136",
-          "Connection": "keep-alive",
-          "cache-control": "no-cache",
-          "Postman-Token": "4b417f23-01f9-4fb2-9883-ac723ac4ae5d,ae0cce3c-4cba-49f9-bfd0-ada41655164e" // "User-Agent": "PostmanRuntime/7.15.2",
+          "cache-control": "no-cache" // "Postman-Token": "4b417f23-01f9-4fb2-9883-ac723ac4ae5d,ae0cce3c-4cba-49f9-bfd0-ada41655164e"
+          //* Refused to set unsafe header
+          // "Cookie": "laravel_session=eyJpdiI6IkpMTHY3ZXlLUytKWWpWYklVdzRFNUE9PSIsInZhbHVlIjoiWU90c1wveTRCWll2cGM1NCsrRVVPOW9vMFR6aW5xb0xzdGhVem53TUVNM2cwaVoxakZ6TFNISlRTWHNBVnNMZ0giLCJtYWMiOiJkODE5NGM3OWM0NzIxNjg2MjViNDQ5OThhZTRiMmNiZWQyMDVmZTUwYzQ5ZGVjNzgyNjFmN2YyZGVhZjE5YWU4In0%3D; XSRF-TOKEN=eyJpdiI6IjFqa09OZzBSS2Y5MnJKNDY0N2dXWUE9PSIsInZhbHVlIjoiWGxCR3BoS3FsXC9jNURlNkpDem0xVkZzaXBGcFBqTTUxU01iY0R6ZVZ0MXRFZjU5Z0dEYUk3cVJtSldZU2RIbEUiLCJtYWMiOiIzYzI2NzFiOTFkYzZiNzQ1M2FhNzgzZDUwZTFmYmU2MGJjN2EzZjIxODM2ZmYyNDkxYzllOTNjNzQ2NmQ0OWIwIn0%3D",
+          // "Host": "127.0.0.1:8000",
+          // "Accept-Encoding": "gzip, deflate",
+          // "Content-Length": "136",
+          // "Connection": "keep-alive",
+          // "User-Agent": "PostmanRuntime/7.15.2",
 
         },
         "data": {
@@ -1751,7 +1752,7 @@ __webpack_require__.r(__webpack_exports__);
       $.ajax(settings).done(function (response) {
         // console.log(response); // 回傳 HTML，我寫導向到 index
         console.log('post blog send');
-      }); //* 追加 Header 免明確定義
+      }); //* 建議改寫成如下，追加 Header，不需要明確定義所有 Header
       // $.ajaxSetup({
       //     headers: {
       //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

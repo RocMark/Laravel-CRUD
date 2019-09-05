@@ -1,0 +1,12 @@
+$phone_media: 480px;
+@mixin mobile{
+    @media only screen and (max-width: $phone_media){
+        @content
+    }
+}
+
+.test {
+    @include mobile{
+        //
+    }
+}

@@ -19,7 +19,7 @@ class ProductTest extends TestCase
         // assertExactJson 一定要檢查所有欄位
         // assertJson      可只檢查其中幾項  (較常用)
 
-        $response->assertStatus(404)->assertJson([
+        $response->assertStatus(200)->assertJson([
             'id' => $pid, 'title' => 'productTitle',
             // 'title' => true // 檢測存在
         ]);
